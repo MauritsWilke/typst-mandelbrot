@@ -10,7 +10,7 @@
   )
 
   image(
-    p.mandelbrot(bytes(str(res))),
+    p.mandelbrot(bytes(str(res)), bytes(str(500))),
     format: (
       encoding: "rgb8",
       width: res,
