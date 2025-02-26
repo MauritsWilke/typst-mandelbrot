@@ -1,4 +1,5 @@
 use wasm_minimal_protocol::{initiate_protocol, wasm_func};
+mod render_modes;
 
 initiate_protocol!();
 
@@ -33,6 +34,7 @@ pub fn mandelbrot(
     x_trans: &[u8],
     y_trans: &[u8],
     zoom: &[u8],
+    render_option: &[u8],
 ) -> Vec<u8> {
     let mut v: Vec<u8> = Vec::new();
 
@@ -41,6 +43,11 @@ pub fn mandelbrot(
     let zoom_level = parse_u8_slice(zoom);
     let x_translation = parse_u8_slice(x_trans);
     let y_translation = parse_u8_slice(y_trans);
+    let render_option = match String::from_utf8(render_option.to_vec()).unwrap().as_str() {
+        "rainbow" => render_modes::rainbow,
+        "flipflop" => render_modes::flipflop,
+        _ => render_modes::greyscale,
+    };
 
     for y in 0..(render_res as u32) {
         for x in 0..(render_res as u32) {
@@ -49,11 +56,9 @@ pub fn mandelbrot(
 
             let iter = iterate(x_coord, y_coord, max_iters as i32);
 
-            let intensity: u8 = (255i32 * iter / (max_iters as i32)) as u8;
+            let mut greyscale = render_option(iter, max_iters as i32);
 
-            v.push(intensity);
-            v.push(intensity);
-            v.push(intensity);
+            v.append(&mut greyscale);
         }
     }
 
