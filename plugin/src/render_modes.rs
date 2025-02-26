@@ -1,3 +1,5 @@
+use std::f64::consts::LN_2;
+
 pub fn greyscale(iterations: i32, max_iterations: i32) -> Vec<u8> {
     return vec![
         (255i32 * iterations / (max_iterations as i32)) as u8,
@@ -27,4 +29,25 @@ pub fn rainbow(iterations: i32, _max_iterations: i32) -> Vec<u8> {
     };
 
     return colour;
+}
+
+pub fn smooth_gradient(iterations: i32, max_iterations: i32) -> Vec<u8> {
+    if iterations == max_iterations {
+        return vec![0, 0, 0];
+    }
+
+    let zn = (iterations as f64) + 1.0 - ((iterations as f64).ln() / LN_2);
+    let smooth = zn / (max_iterations as f64);
+    let color = (255.0 * smooth) as u8;
+
+    vec![color, color, 255 - color]
+}
+
+pub fn fire(iterations: i32, max_iterations: i32) -> Vec<u8> {
+    let t = iterations as f64 / max_iterations as f64;
+    let r = (255.0 * t.sqrt()) as u8;
+    let g = (255.0 * t.powf(1.5)) as u8;
+    let b = (255.0 * t.powf(3.0)) as u8;
+
+    vec![r, g, b]
 }

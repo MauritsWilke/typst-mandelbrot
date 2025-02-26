@@ -46,6 +46,8 @@ pub fn mandelbrot(
     let render_option = match String::from_utf8(render_option.to_vec()).unwrap().as_str() {
         "rainbow" => render_modes::rainbow,
         "flipflop" => render_modes::flipflop,
+        "fire" => render_modes::fire,
+        "smooth_gradient" => render_modes::smooth_gradient,
         _ => render_modes::greyscale,
     };
 
@@ -56,9 +58,9 @@ pub fn mandelbrot(
 
             let iter = iterate(x_coord, y_coord, max_iters as i32);
 
-            let mut greyscale = render_option(iter, max_iters as i32);
+            let mut colours = render_option(iter, max_iters as i32);
 
-            v.append(&mut greyscale);
+            v.append(&mut colours);
         }
     }
 

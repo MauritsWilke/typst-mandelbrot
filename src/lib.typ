@@ -4,15 +4,17 @@
   rainbow: "rainbow",
   flipflop: "flipflop",
   default: "greyscale",
+  smooth: "smooth_gradient",
+  fire: "fire",
 )
 
 #let mandelbrot(
   res: 512,
-  max_iterations: 1500,
+  max_iterations: 300,
   x_translation: 0,
   y_translation: 0,
   zoom: 1,
-  render_mode: render_options.rainbow,
+  render_mode: render_options.smooth,
 ) = {
   image(
     _p.mandelbrot(
@@ -21,14 +23,15 @@
       bytes(json.encode(x_translation)),
       bytes(json.encode(y_translation)),
       bytes(json.encode(zoom)),
-      bytes(json.encode(render_mode)),
+      bytes(render_mode),
     ),
     format: (
       encoding: "rgb8",
       width: res,
       height: res,
     ),
-    width: (res * 1pt),
+    width: auto,
+    height: auto,
     scaling: "pixelated",
   )
 }
