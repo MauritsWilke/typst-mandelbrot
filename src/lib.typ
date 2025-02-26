@@ -1,16 +1,11 @@
-#{
-  let p = plugin("mandelbrot_plugin.wasm")
+#let _p = plugin("mandelbrot_plugin.wasm")
 
-  let res = 512
-
-  set page(
-    margin: (x: 0pt, y: 0pt),
-    width: res * 1pt,
-    height: res * 1pt,
-  )
-
+#let mandelbrot(res: 128, max_iterations: 100) = {
   image(
-    p.mandelbrot(bytes(str(res)), bytes(str(500))),
+    _p.mandelbrot(
+      bytes(str(res)),
+      bytes(str(max_iterations)),
+    ),
     format: (
       encoding: "rgb8",
       width: res,

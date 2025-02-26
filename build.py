@@ -26,9 +26,16 @@ def build_plugin():
 
     shutil.copyfile(PLUGIN_PATH, LIBRARY_DIR.joinpath(PLUGIN_NAME))
 
+def test():
+    print("Testing")
+
+    subprocess.run(
+        ["typst", "compile", "--root", ".", "-f", 'png', "tests/test.typ"]
+    )
 
 def main():
     build_plugin()
+    test()
 
 
 if __name__ == '__main__':
