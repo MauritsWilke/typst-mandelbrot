@@ -26,6 +26,83 @@
 //   )
 // }
 
+// #let res = 4096
+// #let iters = 1500
+// #set page(margin: (x: 0pt, y: 0pt), width: (res * 2 * 1pt), height: (res * 2 * 1pt))
+
+// #table(
+//   columns: 2,
+//   rows: 2,
+//   gutter: 0pt,
+//   inset: 0pt,
+//   stroke: none,
+//   [
+//     #box(
+//       width: (res * 1pt),
+//       height: (res * 1pt),
+//       [
+//         #mandelbrot(
+//           res: res,
+//           zoom: 0.25,
+//           max_iterations: iters,
+//           x_translation: -1,
+//           y_translation: -0.5,
+//           render_mode: "smooth_gradient",
+//         )
+//       ],
+//     )
+//   ],
+//   [
+//     #box(
+//       width: (res * 1pt),
+//       height: (res * 1pt),
+//       [
+//         #mandelbrot(
+//           res: res,
+//           zoom: 0.25,
+//           max_iterations: iters,
+//           x_translation: 0,
+//           y_translation: -0.5,
+//           render_mode: "greyscale",
+//         )
+//       ],
+//     )
+//   ],
+
+//   [
+//     #box(
+//       width: (res * 1pt),
+//       height: (res * 1pt),
+//       [
+//         #mandelbrot(
+//           res: res,
+//           zoom: 0.25,
+//           max_iterations: iters,
+//           x_translation: -1,
+//           y_translation: 0.5,
+//           render_mode: "fire",
+//         )
+//       ],
+//     )
+//   ],
+//   [
+//     #box(
+//       width: (res * 1pt),
+//       height: (res * 1pt),
+//       [
+//         #mandelbrot(
+//           res: res,
+//           zoom: 0.25,
+//           max_iterations: iters,
+//           x_translation: 0,
+//           y_translation: 0.5,
+//           render_mode: "flipflop",
+//         )
+//       ],
+//     )
+//   ],
+// )
+
 #let res = 512
 #set page(margin: (x: 0pt, y: 0pt), width: (res * 2 * 1pt), height: (res * 3 * 1pt))
 
@@ -59,3 +136,15 @@
 )
 
 // #mandelbrot(res: res, max_iterations: 300)
+
+// #let res = 4096
+// #set page(margin: (x: 0pt, y: 0pt), width: (res * 1pt), height: (res * 1pt))
+
+// #mandelbrot(
+//   res: res,
+//   max_iterations: 3000,
+//   x_translation: -1.044124885,
+//   y_translation: -0.2501,
+//   zoom: 0.0007,
+//   render_mode: "fire",
+// )
